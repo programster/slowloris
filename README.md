@@ -35,5 +35,34 @@ You can then use the `-x` option to activate SOCKS5 support and the `--proxy-hos
 ## Configuration options
 It is possible to modify the behaviour of slowloris with command-line arguments.
 
+## Run With Docker
+You can use docker to run slowloris without having to install anything (except docker).
+
+Build the container with the following command.
+
+```
+docker build . --tag slowloris
+```
+
+Then run the built container with
+
+```
+docker run -it \
+-e VICTIM=http://my.server.com \
+-e NUM_SOCKETS=1000 \
+slowloris
+```
+
+If you need to use https then:
+
+```
+docker run \
+-e VICTIM=https://my.server.com \
+-e NUM_SOCKETS=1000 \
+-e PORT=443 \
+-e HTTPS="--https" \
+slowloris
+```
+
 ## License
 The code is licensed under the MIT License.
